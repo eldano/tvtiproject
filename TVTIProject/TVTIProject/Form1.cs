@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+using Drawing = System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -14,6 +14,10 @@ namespace TVTIProject
 {
     public partial class Form1 : Form
     {
+        #region Variables
+        private Sprite zeroWalkingSprite = null;
+        private Image zeroImage = null;
+        #endregion
 
         #region Methods.
         /// <summary>
@@ -38,6 +42,8 @@ namespace TVTIProject
         {
             // Clear the screen.
             Gorgon.Screen.Clear();
+            this.zeroWalkingSprite.Animations["walk"].Advance(e.FrameDeltaTime * 1000.0f);
+            this.zeroWalkingSprite.Draw();
         }
 
         /// <summary>
@@ -52,6 +58,22 @@ namespace TVTIProject
         }
 
         /// <summary>
+        /// Function to provide initialization for our example.
+        /// </summary>
+        private void Initialize()
+        {
+            this.zeroImage = Image.FromFile(@"..\..\Resources\Images\zerox4sheet.png");
+            this.zeroWalkingSprite = Sprite.FromFile(@"..\..\Resources\Sprites\walk.gorSprite");
+            //this.zeroImage = Image.FromFile(@"Resources\Images\zerox4sheet.png");
+            //this.zeroWalkingSprite = Sprite.FromFile(@"Resources\Sprites\walk.gorSprite");
+
+            this.zeroWalkingSprite.Animations["walk"].AnimationState = AnimationState.Playing;
+            this.zeroWalkingSprite.Position = new Vector2D(135f, 200f);
+            this.zeroWalkingSprite.Draw();
+        }
+
+        
+        /// <summary>
         /// Handles the Load event of the MainForm control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -63,18 +85,22 @@ namespace TVTIProject
                 // Initialize the library.
                 Gorgon.Initialize();
 
-                // Display the logo and frame stats.
-                Gorgon.LogoVisible = true;
+                // No muestra el logo ni las stats
+                Gorgon.LogoVisible = false;
                 Gorgon.FrameStatsVisible = false;
 
                 // Set the video mode to match the form client area.
-                Gorgon.SetMode(this, Constantes.resWidth, Constantes.resHeight, BackBufferFormats.BufferRGB888, false);
+                Gorgon.SetMode(this);
 
                 // Assign rendering event handler.
                 Gorgon.Idle += new FrameEventHandler(Screen_OnFrameBegin);
 
+                //inicializaciones
+                Initialize();
+
+
                 // Set the clear color to something ugly.
-                Gorgon.Screen.BackgroundColor = Color.FromArgb(250, 245, 220);
+                Gorgon.Screen.BackgroundColor = Drawing.Color.LightGray;
 
                 // Begin execution.
                 Gorgon.Go();
@@ -91,6 +117,16 @@ namespace TVTIProject
         public Form1()
         {
             InitializeComponent();
+        }
+
+
+        private void onClick(object sender, EventArgs e)
+        {
+            if (e is MouseEventArgs)
+            {
+                MouseEventArgs clickArgs = (MouseEventArgs)e;
+                this.zeroWalkingSprite.Position = new Vector2D(clickArgs.Location);
+            }
         }
     }
 }
