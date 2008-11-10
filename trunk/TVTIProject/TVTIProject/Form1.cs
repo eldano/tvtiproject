@@ -68,7 +68,7 @@ namespace TVTIProject
                 Gorgon.FrameStatsVisible = false;
 
                 // Set the video mode to match the form client area.
-                Gorgon.SetMode(this);
+                Gorgon.SetMode(this, Constantes.resWidth, Constantes.resHeight, BackBufferFormats.BufferRGB888, false);
 
                 // Assign rendering event handler.
                 Gorgon.Idle += new FrameEventHandler(Screen_OnFrameBegin);
