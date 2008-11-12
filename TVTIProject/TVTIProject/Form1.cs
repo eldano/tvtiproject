@@ -31,6 +31,11 @@ namespace TVTIProject
                 Close();
             if (e.KeyCode == Keys.S)
                 Gorgon.FrameStatsVisible = !Gorgon.FrameStatsVisible;
+            if (e.KeyCode == Keys.M)
+            {
+                this.zeroWalkingSprite.Animations["walk"].Reset();
+
+            }
         }
 
         /// <summary>
@@ -69,7 +74,7 @@ namespace TVTIProject
 
             this.zeroWalkingSprite.Animations["walk"].AnimationState = AnimationState.Playing;
             this.zeroWalkingSprite.Position = new Vector2D(135f, 200f);
-            this.zeroWalkingSprite.Draw();
+            
         }
 
         
@@ -90,7 +95,8 @@ namespace TVTIProject
                 Gorgon.FrameStatsVisible = false;
 
                 // Set the video mode to match the form client area.
-                Gorgon.SetMode(this);
+                // Set the video mode to match the form client area.
+                Gorgon.SetMode(this, Constantes.resWidth, Constantes.resHeight, BackBufferFormats.BufferRGB888, false);
 
                 // Assign rendering event handler.
                 Gorgon.Idle += new FrameEventHandler(Screen_OnFrameBegin);
