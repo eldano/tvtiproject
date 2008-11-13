@@ -7,19 +7,11 @@ using GorgonLibrary;
 
 namespace TVTIProject
 {
-    /// <summary>
-    /// Representa un nodo de tipo PowerUp de la escena
-    /// </summary>
-    public class PowerUpNode : SceneNode
+    public class GoalNode: SceneNode
     {
-        public InventoryItem InventoryItem
-        {
-            get;
-            set;
-        }
 
-        public PowerUpNode(Vector2D position, InventoryItem item) : base(position) {
-            InventoryItem = item;
+        public GoalNode(Vector2D position) : base(position) { 
+        
         }
 
         public override void MouseClick(InventoryItem item)
@@ -31,6 +23,5 @@ namespace TVTIProject
         {
             throw new NotImplementedException();
         }
-
     }
 }

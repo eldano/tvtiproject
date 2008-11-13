@@ -22,20 +22,36 @@ namespace TVTIProject
             set;
         }
 
+        /// <summary>
+        /// Nodo adyacente al norte.
+        /// </summary>
+        public Dictionary<Direction, SceneNode> NeighborNodes
+        {
+            get;
+            set;
+        }
+
         /// <param name="position">Posicion absoluta del nodo.</param>
         public SceneNode(Vector2D position) {
             this.Position = position;
+            NeighborNodes = new Dictionary<Direction, SceneNode>();
+        }
+
+        public void addNeighbor(Direction dir, SceneNode node) {
+            NeighborNodes.Add(dir, node);
         }
 
         /// <summary>
-        /// Ejecuta la accion que debe realizar el nodo al hacer click.
+        /// Ejecuta la accion que debe realizar el nodo al hacer click cuando está seleccionado un item en el inventario.
         /// </summary>
-        public abstract void onClick();
+        /// <param name="item">Item seleccionado</param>
+        public abstract void MouseClick(InventoryItem item);
 
         /// <summary>
         /// Ejecuta la accion que debe realizar cuando el personaje llega hasta el.
         /// </summary>
-        public abstract void onVisit();
+        public abstract void CharacterVisit(Character character);
+
     }
 
 }
