@@ -7,30 +7,24 @@ using GorgonLibrary;
 
 namespace TVTIProject
 {
-    public enum TurningOptions { 
-        north,
-        east,
-        south,
-        west,
-    }
 
     /// <summary>
     /// Representa un nodo que permite girar al personaje en la escena
     /// </summary>
     public class TurningNode : SceneNode
     {
-        private LinkedList<TurningOptions> possibleTurningOptions;
-        private TurningOptions turnedTo;
+        private LinkedList<Direction> possibleTurningDirections;
+        private Direction turnedTo;
 
         public TurningNode(Vector2D position) : base(position) {
-            possibleTurningOptions = new LinkedList<TurningOptions>();
+            possibleTurningDirections = new LinkedList<Direction>();
         }
 
-        public LinkedList<TurningOptions> PossibleTurningOptions {
-            get { return possibleTurningOptions; }
+        public LinkedList<Direction> PossibleTurningOptions {
+            get { return possibleTurningDirections; }
             set {
-                possibleTurningOptions = value;
-                turnedTo = possibleTurningOptions.First<TurningOptions>();
+                possibleTurningDirections = value;
+                turnedTo = possibleTurningDirections.First<Direction>();
             }
         }
 
@@ -39,14 +33,14 @@ namespace TVTIProject
         /// </summary>
         private void turn() {
             bool returnNext = false;
-            foreach (TurningOptions to in possibleTurningOptions) {
+            foreach (Direction to in possibleTurningDirections) {
                 if (returnNext) {
                     turnedTo = to;
                 }
                 if (to == turnedTo) {
-                    if (to == possibleTurningOptions.Last<TurningOptions>())
+                    if (to == possibleTurningDirections.Last<Direction>())
                     {
-                        turnedTo = possibleTurningOptions.First<TurningOptions>();
+                        turnedTo = possibleTurningDirections.First<Direction>();
                         return;
                     }
                     else {
@@ -56,14 +50,20 @@ namespace TVTIProject
             }
         }
 
-        public override void onClick()
+        public override void MouseClick(InventoryItem item)
         {
             turn();
             throw new NotImplementedException();
         }
 
-        public override void onVisit()
+        public override void CharacterVisit(Character character)
         {
+            character.Direction = turnedTo;
+
+            SceneNode nodeDest;
+            this.NeighborNodes.TryGetValue(character.Direction, out nodeDest);
+            character.DirectionVector = nodeDest.Position - this.Position;
+
             throw new NotImplementedException();
         }
 

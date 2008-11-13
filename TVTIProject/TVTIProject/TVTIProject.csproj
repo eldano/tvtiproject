@@ -53,11 +53,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Character.cs" />
     <Compile Include="Constantes.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="GoalNode.cs" />
     <Compile Include="HazardNode.cs" />
     <Compile Include="InventoryItem.cs" />
     <Compile Include="PowerUpNode.cs" />
-    <Compile Include="SceneEdge.cs" />
     <Compile Include="SceneGraph.cs" />
     <Compile Include="SceneNode.cs" />
     <Compile Include="Form1.cs">

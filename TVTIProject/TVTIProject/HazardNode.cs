@@ -23,17 +23,18 @@ namespace TVTIProject
             state = HazardState.hazard;
         }
 
-        private void solve(InventoryItem item) { 
+        private void trySolve(InventoryItem item) {
             //TODO: Se podría guardar el nombre del elemento que lo resuelve y compara el nombre aquí.
             //Tal vez la operacion reciba un string en lugar de un item
         }
 
-        public override void onClick()
+        public override void MouseClick(InventoryItem item)
         {
+            trySolve(item);
             throw new NotImplementedException();
         }
 
-        public override void onVisit()
+        public override void CharacterVisit(Character character)
         {
             throw new NotImplementedException();
         }
