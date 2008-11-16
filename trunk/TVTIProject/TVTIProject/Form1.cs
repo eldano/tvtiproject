@@ -108,6 +108,9 @@ namespace TVTIProject
                 // Set the clear color to something ugly.
                 Gorgon.Screen.BackgroundColor = Drawing.Color.LightGray;
 
+
+                Song.PlaySong("city");
+
                 // Begin execution.
                 Gorgon.Go();
             }
