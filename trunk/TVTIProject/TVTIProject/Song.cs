@@ -18,8 +18,6 @@ namespace TVTIProject
         private static AudioBuffer buffer { get; set; }
         private static SourceVoice sourceVoice { get; set; }
 
-
-
         public Song()
         {
 
