@@ -58,12 +58,7 @@ namespace TVTIProject
 
         public override void CharacterVisit(Character character)
         {
-            character.Direction = turnedTo;
-
-            SceneNode nodeDest;
-            this.NeighborNodes.TryGetValue(character.Direction, out nodeDest);
-            character.DirectionVector = nodeDest.Position - this.Position;
-
+            character.NodeDest = this.NeighborNodes[turnedTo];
             throw new NotImplementedException();
         }
 

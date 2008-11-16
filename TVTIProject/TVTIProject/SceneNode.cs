@@ -37,6 +37,11 @@ namespace TVTIProject
             NeighborNodes = new Dictionary<Direction, SceneNode>();
         }
 
+        /// <summary>
+        /// Agrega un nodo vecino en la dirección dada.
+        /// </summary>
+        /// <param name="dir">Dirección en la que voy a agregar al vecino.</param>
+        /// <param name="node">Nodo que voy a agregar como vecino.</param>
         public void addNeighbor(Direction dir, SceneNode node) {
             NeighborNodes.Add(dir, node);
         }
