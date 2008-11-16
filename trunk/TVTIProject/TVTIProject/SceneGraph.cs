@@ -21,6 +21,14 @@ namespace TVTIProject
         }
 
         /// <summary>
+        /// Devuelve la posición del primer nodo del grafo.
+        /// </summary>
+        /// <returns></returns>
+        public Vector2D firstNodePosition() {
+            return nodes.First<SceneNode>().Position;
+        }
+
+        /// <summary>
         /// Crea una arista en el grafo desde node1 hacia node2 con direccion dir.
         /// </summary>
         /// <param name="node1">Nodo origen</param>
@@ -29,5 +37,6 @@ namespace TVTIProject
         public void createEdge(SceneNode node1, SceneNode node2, Direction dir) {
             node1.addNeighbor(dir, node2);
         }
+
     }
 }
