@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-
 using SlimDX.XAudio2;
 using System.Runtime.InteropServices;
 using System.Threading;
