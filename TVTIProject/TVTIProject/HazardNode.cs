@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using GorgonLibrary;
+using GorgonLibrary.Graphics;
 
 namespace TVTIProject
 {
@@ -19,7 +20,7 @@ namespace TVTIProject
     {
         private HazardState state;
 
-        public HazardNode(Vector2D position) : base(position) {
+        public HazardNode(Vector2D position, Sprite sprite) : base(position, sprite) {
             state = HazardState.hazard;
         }
 
@@ -35,6 +36,11 @@ namespace TVTIProject
         }
 
         public override void CharacterVisit(Character character)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Draw(float dtime)
         {
             throw new NotImplementedException();
         }

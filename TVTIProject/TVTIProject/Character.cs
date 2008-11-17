@@ -33,6 +33,10 @@ namespace TVTIProject
         private SceneNode nodeSrc;
         private SceneNode nodeDest;
 
+        /// <summary>
+        /// Se obtiene o setea el nodo destino.
+        /// Al setearlo se activa también la nueva animación y la nueva dirección de movimiento.
+        /// </summary>
         public SceneNode NodeDest
         {
             get { return nodeDest; }
@@ -40,29 +44,31 @@ namespace TVTIProject
                 nodeSrc = nodeDest;
                 nodeDest = value;
 
-                directionVector = nodeDest.Position - nodeSrc.Position;
+                directionVector = nodeDest.Position - this.Position;
                 directionVector.Normalize();
 
+                /*
+                activeAnimation.AnimationState = AnimationState.Stopped;
+                
                 if (nodeSrc.NeighborNodes[Direction.north] == nodeDest)
                 {
-                    activeAnimation.AnimationState = AnimationState.Stopped;
-                    //Switch to north animation
-                    //activeAnimation = Sprite.Animations["walkNorth"];
-                    activeAnimation.AnimationState = AnimationState.Playing;
+                    activeAnimation = Sprite.Animations["walkNorth"];
                 }
                 else if (nodeSrc.NeighborNodes[Direction.east] == nodeDest)
                 {
-                    //Switch to east animation
+                    activeAnimation = Sprite.Animations["walkEast"];
                 }
                 else if (nodeSrc.NeighborNodes[Direction.south] == nodeDest)
                 {
-                    //Switch to south animation
+                    activeAnimation = Sprite.Animations["walkSouth"];
                 }
                 else if (nodeSrc.NeighborNodes[Direction.west] == nodeDest)
                 {
-                    //Switch to west animation
+                    activeAnimation = Sprite.Animations["walkWest"];
                 }
-
+                
+                activeAnimation.AnimationState = AnimationState.Playing;
+                 */
             }
         }
 
@@ -70,11 +76,33 @@ namespace TVTIProject
 
         public Character(Sprite sprite) {
             this.Sprite = sprite;
+            this.Speed = Constantes.characterSpeed;
+
+            /*
+            activeAnimation = Sprite.Animations["walkEast"];
+            activeAnimation.AnimationState = AnimationState.Playing;
+             */
+
+            Sprite.Height = 10;
+            Sprite.Width = 10;
         }
 
-        public void Update() {
+        private void Update() {
             this.Position = this.Position + this.Speed * this.directionVector;
+            Sprite.Position = this.Position;
 
+            float length = (this.Position - this.nodeDest.Position).Length;
+
+            if (length < Constantes.deltaDistance) {
+                this.nodeDest.CharacterVisit(this);
+            }
+        }
+
+        public void Draw(float dtime) {
+            //activeAnimation.Advance(dtime);
+            Sprite.Draw();
+
+            Update();
         }
     }
 }

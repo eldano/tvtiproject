@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using GorgonLibrary;
+using GorgonLibrary.Graphics;
 
 namespace TVTIProject
 {
@@ -16,16 +17,13 @@ namespace TVTIProject
         private LinkedList<Direction> possibleTurningDirections;
         private Direction turnedTo;
 
-        public TurningNode(Vector2D position) : base(position) {
+        public TurningNode(Vector2D position, Sprite sprite) : base(position, sprite) {
             possibleTurningDirections = new LinkedList<Direction>();
         }
 
-        public LinkedList<Direction> PossibleTurningOptions {
-            get { return possibleTurningDirections; }
-            set {
-                possibleTurningDirections = value;
-                turnedTo = possibleTurningDirections.First<Direction>();
-            }
+        public void addPossibleTurningDirection(Direction dir) {
+            possibleTurningDirections.AddLast(dir);
+            turnedTo = possibleTurningDirections.First<Direction>();
         }
 
         /// <summary>
@@ -59,8 +57,28 @@ namespace TVTIProject
         public override void CharacterVisit(Character character)
         {
             character.NodeDest = this.NeighborNodes[turnedTo];
-            throw new NotImplementedException();
         }
 
+        public override void Draw(float dtime)
+        {
+            /*
+            switch (turnedTo) { 
+                case Direction.north:
+                    this.Sprite.Animations["north"].Advance(dtime);
+                    break;
+                case Direction.east:
+                    this.Sprite.Animations["east"].Advance(dtime);
+                    break;
+                case Direction.south:
+                    this.Sprite.Animations["south"].Advance(dtime);
+                    break;
+                case Direction.west:
+                    this.Sprite.Animations["west"].Advance(dtime);
+                    break;
+            }
+             */
+
+            Sprite.Draw();
+        }
     }
 }
