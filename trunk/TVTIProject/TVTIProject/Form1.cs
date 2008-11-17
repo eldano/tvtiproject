@@ -47,8 +47,10 @@ namespace TVTIProject
         {
             // Clear the screen.
             Gorgon.Screen.Clear();
+
+
             this.zeroWalkingSprite.Animations["walk"].Advance(e.FrameDeltaTime * 1000.0f);
-            this.zeroWalkingSprite.Draw();
+            //this.zeroWalkingSprite.Draw();
         }
 
         /// <summary>
@@ -96,7 +98,7 @@ namespace TVTIProject
 
                 // Set the video mode to match the form client area.
                 // Set the video mode to match the form client area.
-                Gorgon.SetMode(this, Constantes.resWidth, Constantes.resHeight, BackBufferFormats.BufferRGB888, false);
+                Gorgon.SetMode(this, Constantes.resWidth, Constantes.resHeight, BackBufferFormats.BufferRGB888, true);
 
                 // Assign rendering event handler.
                 Gorgon.Idle += new FrameEventHandler(Screen_OnFrameBegin);
