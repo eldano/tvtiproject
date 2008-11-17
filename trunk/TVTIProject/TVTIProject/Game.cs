@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using GorgonLibrary.Graphics;
+
 namespace TVTIProject
 {
     /// <summary>
@@ -10,20 +12,25 @@ namespace TVTIProject
     /// </summary>
     public class Game
     {
+        private Level1 level1;
 
-        private LinkedList<Screen> screens;
-        private Screen activeScreen;
+        private bool enabled = false;
 
         public Game() {
-            initialize();
+            Initialize();
+            enabled = true;
         }
 
-        public void draw(float deltaTime) { 
-            
+        public void Draw(float deltaTime) {
+            if(enabled) 
+                level1.Draw(deltaTime);
         }
 
-        private void initialize() { 
-            //Inicializo todas los elementos del juego
+        /// <summary>
+        /// Inicializa los elementos del juego.
+        /// </summary>
+        private void Initialize() { 
+            level1 = new Level1("");
         }
 
     }

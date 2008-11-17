@@ -15,8 +15,7 @@ namespace TVTIProject
     public partial class Form1 : Form
     {
         #region Variables
-        private Sprite zeroWalkingSprite = null;
-        private Image zeroImage = null;
+        private Game game;
         #endregion
 
         #region Methods.
@@ -31,15 +30,10 @@ namespace TVTIProject
                 Close();
             if (e.KeyCode == Keys.S)
                 Gorgon.FrameStatsVisible = !Gorgon.FrameStatsVisible;
-            if (e.KeyCode == Keys.M)
-            {
-                this.zeroWalkingSprite.Animations["walk"].Reset();
-
-            }
         }
 
         /// <summary>
-        /// Handles the OnFrameBegin event of the Screen control.
+        /// Handles the OnFrameBegin event of the Level1 control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="GorgonLibrary.FrameEventArgs"/> instance containing the event data.</param>
@@ -47,10 +41,7 @@ namespace TVTIProject
         {
             // Clear the screen.
             Gorgon.Screen.Clear();
-
-
-            this.zeroWalkingSprite.Animations["walk"].Advance(e.FrameDeltaTime * 1000.0f);
-            this.zeroWalkingSprite.Draw();
+            game.Draw(e.FrameDeltaTime * 1000.0f);
         }
 
         /// <summary>
@@ -63,22 +54,6 @@ namespace TVTIProject
             // Perform clean up.
             Gorgon.Terminate();
         }
-
-        /// <summary>
-        /// Function to provide initialization for our example.
-        /// </summary>
-        private void Initialize()
-        {
-            this.zeroImage = Image.FromFile(@"..\..\Resources\Images\zerox4sheet.png");
-            this.zeroWalkingSprite = Sprite.FromFile(@"..\..\Resources\Sprites\walk.gorSprite");
-            //this.zeroImage = Image.FromFile(@"Resources\Images\zerox4sheet.png");
-            //this.zeroWalkingSprite = Sprite.FromFile(@"Resources\Sprites\walk.gorSprite");
-
-            this.zeroWalkingSprite.Animations["walk"].AnimationState = AnimationState.Playing;
-            this.zeroWalkingSprite.Position = new Vector2D(135f, 200f);
-            
-        }
-
         
         /// <summary>
         /// Handles the Load event of the MainForm control.
@@ -103,15 +78,11 @@ namespace TVTIProject
                 // Assign rendering event handler.
                 Gorgon.Idle += new FrameEventHandler(Screen_OnFrameBegin);
 
-                //inicializaciones
-                Initialize();
-
-
                 // Set the clear color to something ugly.
                 Gorgon.Screen.BackgroundColor = Drawing.Color.LightGray;
 
-
-                Song.PlaySong("city");
+                //inicializaciones
+                game = new Game();
 
                 // Begin execution.
                 Gorgon.Go();
@@ -136,7 +107,6 @@ namespace TVTIProject
             if (e is MouseEventArgs)
             {
                 MouseEventArgs clickArgs = (MouseEventArgs)e;
-                this.zeroWalkingSprite.Position = new Vector2D(clickArgs.Location);
             }
         }
     }

@@ -32,14 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gorgon, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c001d94e9acbbee7, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\Libraries\Gorgon.dll</HintPath>
-    </Reference>
-    <Reference Include="SlimDX, Version=2.0.5.39, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\Libraries\SlimDX.dll</HintPath>
-    </Reference>
+    <Reference Include="Gorgon, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c001d94e9acbbee7, processorArchitecture=x86" />
+    <Reference Include="SlimDX, Version=2.0.5.39, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=x86" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -65,7 +59,6 @@
     <Compile Include="HazardNode.cs" />
     <Compile Include="InventoryItem.cs" />
     <Compile Include="PowerUpNode.cs" />
-    <Compile Include="SceneGraph.cs" />
     <Compile Include="SceneNode.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -91,12 +84,14 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\characterSprite.gorSprite" />
+    <None Include="Resources\turningNodeSprite.gorSprite" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Screen.cs" />
+    <Compile Include="Level1.cs" />
     <Compile Include="Song.cs" />
     <Compile Include="TurningNode.cs" />
   </ItemGroup>
@@ -107,6 +102,7 @@
     <Content Include="Resources\Icons\ExeIcono.ico" />
     <Content Include="Resources\Libraries\Gorgon.dll" />
     <Content Include="Resources\Libraries\SlimDX.dll" />
+    <Content Include="Resources\spritesv0.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

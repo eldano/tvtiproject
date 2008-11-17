@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 
 using GorgonLibrary;
+using GorgonLibrary.Graphics;
 
 namespace TVTIProject
 {
     public class GoalNode: SceneNode
     {
 
-        public GoalNode(Vector2D position) : base(position) { 
+        public GoalNode(Vector2D position, Sprite sprite) : base(position, sprite) { 
         
         }
 
@@ -21,6 +22,12 @@ namespace TVTIProject
 
         public override void CharacterVisit(Character character)
         {
+            throw new NotImplementedException();
+        }
+
+        public override void Draw(float dtime)
+        {
+            this.Sprite.Animations[""].Advance(dtime);
             throw new NotImplementedException();
         }
     }

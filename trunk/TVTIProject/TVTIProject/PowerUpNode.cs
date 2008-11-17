@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using GorgonLibrary;
+using GorgonLibrary.Graphics;
 
 namespace TVTIProject
 {
@@ -18,7 +19,7 @@ namespace TVTIProject
             set;
         }
 
-        public PowerUpNode(Vector2D position, InventoryItem item) : base(position) {
+        public PowerUpNode(Vector2D position, Sprite sprite, InventoryItem item) : base(position, sprite) {
             InventoryItem = item;
         }
 
@@ -32,5 +33,9 @@ namespace TVTIProject
             throw new NotImplementedException();
         }
 
+        public override void Draw(float dtime)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

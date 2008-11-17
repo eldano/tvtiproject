@@ -23,6 +23,15 @@ namespace TVTIProject
         }
 
         /// <summary>
+        /// Sprite para el nodo
+        /// </summary>
+        public Sprite Sprite
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Nodo adyacente al norte.
         /// </summary>
         public Dictionary<Direction, SceneNode> NeighborNodes
@@ -32,8 +41,14 @@ namespace TVTIProject
         }
 
         /// <param name="position">Posicion absoluta del nodo.</param>
-        public SceneNode(Vector2D position) {
+        /// <param name="sprite">Sprite del nodo.</param>
+        public SceneNode(Vector2D position, Sprite sprite) {
             this.Position = position;
+            this.Sprite = sprite;
+            this.Sprite.Width = 10;
+            this.Sprite.Height = 10;
+            this.Sprite.Position = position;
+
             NeighborNodes = new Dictionary<Direction, SceneNode>();
         }
 
@@ -57,6 +72,11 @@ namespace TVTIProject
         /// </summary>
         public abstract void CharacterVisit(Character character);
 
+        /// <summary>
+        /// Dibuja al nodo en pantalla
+        /// </summary>
+        /// <param name="dtime"></param>
+        public abstract void Draw(float dtime);
     }
 
 }
