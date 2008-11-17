@@ -50,7 +50,7 @@ namespace TVTIProject
 
 
             this.zeroWalkingSprite.Animations["walk"].Advance(e.FrameDeltaTime * 1000.0f);
-            //this.zeroWalkingSprite.Draw();
+            this.zeroWalkingSprite.Draw();
         }
 
         /// <summary>

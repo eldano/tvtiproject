@@ -101,7 +101,9 @@
     <Compile Include="TurningNode.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\City.wav" />
+    <EmbeddedResource Include="Resources\City.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="Resources\Icons\ExeIcono.ico" />
     <Content Include="Resources\Libraries\Gorgon.dll" />
     <Content Include="Resources\Libraries\SlimDX.dll" />

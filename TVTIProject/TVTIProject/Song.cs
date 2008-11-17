@@ -44,7 +44,7 @@ namespace TVTIProject
             //elijo que canción voy a reproducir
             if (songName == "city")
             {
-                fileName = "..\\..\\Resources\\City.wav"; 
+                fileName = "Resources\\City.wav"; 
             }
             
             SlimDX.XAudio2.XAudio2 device = new SlimDX.XAudio2.XAudio2();
