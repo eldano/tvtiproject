@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-using SlimDX.XAudio2;
-using System.Runtime.InteropServices;
 using System.Threading;
-using SlimDX.Multimedia;
 
 namespace TVTIProject
 {
@@ -15,8 +9,9 @@ namespace TVTIProject
 
         private static Thread music { get; set; }
         private static string songName { get; set; }
-        private static AudioBuffer buffer { get; set; }
-        private static SourceVoice sourceVoice { get; set; }
+        private static Microsoft.DirectX.AudioVideoPlayback.Audio soundFile { get; set; }
+
+        private static System.Timers.Timer timer = new System.Timers.Timer();
 
         public Song()
         {
@@ -28,6 +23,7 @@ namespace TVTIProject
             songName = s;
             ThreadStart funcionStart = new ThreadStart(PlaySongFunc);
             if(music != null && music.IsAlive){
+                timer.Stop();
                 music.Abort();
             }
             music = new Thread(funcionStart);
@@ -46,53 +42,24 @@ namespace TVTIProject
             {
                 fileName = "Resources\\City.wav"; 
             }
+
+            soundFile = new Microsoft.DirectX.AudioVideoPlayback.Audio(fileName);
+            soundFile.Play();
             
-            SlimDX.XAudio2.XAudio2 device = new SlimDX.XAudio2.XAudio2();
-
-            //Me inicializa el array de voces
-            MasteringVoice masteringVoice = new MasteringVoice(device);
-
-            byte[] data;
-            WaveFormat format;
-            // leo el archivo que quiero reproducir
-            using (WaveFile file = new WaveFile(fileName))
-            {
-                format = file.Format;
-                data = new byte[file.Size];
-                file.Read(data, file.Size);
-            }
-
-            // si no pongo esto me da un error porque inicializa alguna estructura de la tarjeta de sonido
-            sourceVoice = new SourceVoice(device, format);
-
-            // creo el buffer que voy a reproducir
-            buffer = new AudioBuffer();
-            buffer.AudioData = data;
-            buffer.AudioBytes = data.Length;
-
-            //no se que hace
-            buffer.Flags = BufferFlags.EndOfStream;
-
-            //mando el buffer a la tarjeta de sonido para que después lo reproduzca
-            sourceVoice.SubmitSourceBuffer(buffer);
-            //otro buffer para que no se note nunca el salto
-            sourceVoice.SubmitSourceBuffer(buffer);
-
-            // arranca la canción
-            sourceVoice.Start();
-
-            //hacer que se quede cantando por mucho rato...
-            sourceVoice.BufferEnd += new EventHandler<ContextEventArgs>(terminarBuffer);
-
-            //Thread.Sleep(10);
+            
+            timer.Elapsed += new System.Timers.ElapsedEventHandler(soundFile_Ending);
+            timer.Interval = soundFile.Duration * 1000;
+            timer.Start();
+        
             
         }
 
-
-        public static void terminarBuffer(object sender, ContextEventArgs args)
+        static void soundFile_Ending(object sender, EventArgs e)
         {
-            sourceVoice.SubmitSourceBuffer(buffer);
+            soundFile.CurrentPosition = 0;
         }
+
+       
 
     }
 }
