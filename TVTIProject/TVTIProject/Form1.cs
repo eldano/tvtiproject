@@ -85,7 +85,7 @@ namespace TVTIProject
                 game = new Game();
 
 
-               // Song.PlaySong("city");
+                Song.PlaySong("city");
                 // Begin execution.
                 Gorgon.Go();
             }
