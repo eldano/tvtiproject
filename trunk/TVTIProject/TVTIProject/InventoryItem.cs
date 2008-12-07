@@ -5,6 +5,15 @@ using System.Text;
 
 namespace TVTIProject
 {
+
+    public enum ItemTypes {
+        cursor,
+        trapo,
+        extintor,
+        tapa,
+        contenedor,
+    }
+
     /// <summary>
     /// Representa un tipo de item del inventario.
     /// </summary>
@@ -16,9 +25,16 @@ namespace TVTIProject
             set;
         }
 
-        /// <param name="stock">Cantidad de items de este tipo. Negativo para items inagotables</param>
-        public InventoryItem(int stock) {
+        public ItemTypes tipo
+        {
+            get;
+            set;
+        }
+
+        public InventoryItem(int stock, ItemTypes tipo)
+        {
             Stock = stock;
+            this.tipo = tipo;
         }
     }
 }
