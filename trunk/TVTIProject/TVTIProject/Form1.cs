@@ -86,7 +86,6 @@ namespace TVTIProject
                 Sound.init();
                 Song.PlaySong("ciudad");
 
-                //Sound.PlaySound("city");
                 // Begin execution.
                 Gorgon.Go();
             /*}
