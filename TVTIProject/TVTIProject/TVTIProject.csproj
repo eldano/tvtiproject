@@ -58,6 +58,7 @@
     <Compile Include="GoalNode.cs" />
     <Compile Include="HazardNode.cs" />
     <Compile Include="InventoryItem.cs" />
+    <Compile Include="MenuLateral.cs" />
     <Compile Include="PowerUpNode.cs" />
     <Compile Include="SceneNode.cs" />
     <Compile Include="Form1.cs">

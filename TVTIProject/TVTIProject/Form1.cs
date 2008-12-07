@@ -98,20 +98,9 @@ namespace TVTIProject
         }
         #endregion
 
-
         public Form1()
         {
             InitializeComponent();
-        }
-
-
-        private void onClick(object sender, EventArgs e)
-        {
-            if (e is MouseEventArgs)
-            {
-                MouseEventArgs clickArgs = (MouseEventArgs)e;
-                Sound.PlaySound("alcantarilla");
-            }
         }
     }
 }
