@@ -37,10 +37,9 @@ namespace TVTIProject
 
         public Sound()
         {
-
         }
 
-        public static  void init(){
+        public static void init(){
             //DO NOTHING JUST FOR C# LOADING
         }
 
