@@ -47,28 +47,33 @@ namespace TVTIProject
                 directionVector = nodeDest.Position - this.Position;
                 directionVector.Normalize();
 
-                /*
                 activeAnimation.AnimationState = AnimationState.Stopped;
-                
-                if (nodeSrc.NeighborNodes[Direction.north] == nodeDest)
-                {
-                    activeAnimation = Sprite.Animations["walkNorth"];
-                }
-                else if (nodeSrc.NeighborNodes[Direction.east] == nodeDest)
+
+                if (nodeSrc == null)
                 {
                     activeAnimation = Sprite.Animations["walkEast"];
                 }
-                else if (nodeSrc.NeighborNodes[Direction.south] == nodeDest)
+                else
                 {
-                    activeAnimation = Sprite.Animations["walkSouth"];
-                }
-                else if (nodeSrc.NeighborNodes[Direction.west] == nodeDest)
-                {
-                    activeAnimation = Sprite.Animations["walkWest"];
+                    if (nodeSrc.NeighborNodes.ContainsKey(Direction.north) && nodeSrc.NeighborNodes[Direction.north] == nodeDest)
+                    {
+                        activeAnimation = Sprite.Animations["walkNorth"];
+                    }
+                    else if (nodeSrc.NeighborNodes.ContainsKey(Direction.east) && nodeSrc.NeighborNodes[Direction.east] == nodeDest)
+                    {
+                        activeAnimation = Sprite.Animations["walkEast"];
+                    }
+                    else if (nodeSrc.NeighborNodes.ContainsKey(Direction.south) && nodeSrc.NeighborNodes[Direction.south] == nodeDest)
+                    {
+                        activeAnimation = Sprite.Animations["walkSouth"];
+                    }
+                    else if (nodeSrc.NeighborNodes.ContainsKey(Direction.west) && nodeSrc.NeighborNodes[Direction.west] == nodeDest)
+                    {
+                        activeAnimation = Sprite.Animations["walkWest"];
+                    }
                 }
                 
                 activeAnimation.AnimationState = AnimationState.Playing;
-                 */
             }
         }
 
@@ -78,13 +83,8 @@ namespace TVTIProject
             this.Sprite = sprite;
             this.Speed = Constantes.characterSpeed;
 
-            /*
             activeAnimation = Sprite.Animations["walkEast"];
             activeAnimation.AnimationState = AnimationState.Playing;
-             */
-
-            Sprite.Height = 10;
-            Sprite.Width = 10;
         }
 
         private void Update() {
@@ -99,7 +99,7 @@ namespace TVTIProject
         }
 
         public void Draw(float dtime) {
-            //activeAnimation.Advance(dtime);
+            activeAnimation.Advance(dtime);
             Sprite.Draw();
 
             Update();
