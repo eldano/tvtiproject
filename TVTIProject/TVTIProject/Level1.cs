@@ -24,7 +24,7 @@ namespace TVTIProject
         private InventoryItem activeCursor;
 
         public Level1(string backgroundPath) {
-            this.background = Image.FromFile(@"..\..\Resources\Sprites\fondo1.PNG");
+            this.background = Image.FromFile(@"..\..\Resources\SpritesX\fondo1.PNG");
 
             nodes = new LinkedList<SceneNode>();
             Initialize();
@@ -76,14 +76,14 @@ namespace TVTIProject
         /// Inicializo los elementos del nivel
         /// </summary>
         private void Initialize() {
-            Image.FromFile(@"..\..\Resources\Sprites\spritesv0.bmp");
+            Image.FromFile(@"..\..\Resources\SpritesX\spritesv0.bmp");
 
-            Sprite spriteNode1 = Sprite.FromFile(@"..\..\Resources\Sprites\turningNode.gorSprite");
-            Sprite spriteNode2 = Sprite.FromFile(@"..\..\Resources\Sprites\turningNode.gorSprite");
-            Sprite spriteNode3 = Sprite.FromFile(@"..\..\Resources\Sprites\turningNode.gorSprite");
-            Sprite spriteNode4 = Sprite.FromFile(@"..\..\Resources\Sprites\turningNode.gorSprite");
+            Sprite spriteNode1 = Sprite.FromFile(@"..\..\Resources\SpritesX\turningNode.gorSprite");
+            Sprite spriteNode2 = Sprite.FromFile(@"..\..\Resources\SpritesX\turningNode.gorSprite");
+            Sprite spriteNode3 = Sprite.FromFile(@"..\..\Resources\SpritesX\turningNode.gorSprite");
+            Sprite spriteNode4 = Sprite.FromFile(@"..\..\Resources\SpritesX\turningNode.gorSprite");
 
-            Sprite spriteCharacter = Sprite.FromFile(@"..\..\Resources\Sprites\character.gorSprite");
+            Sprite spriteCharacter = Sprite.FromFile(@"..\..\Resources\SpritesX\character.gorSprite");
 
             TurningNode node1 = new TurningNode(new Vector2D(300, 300), spriteNode1);
             node1.addPossibleTurningDirection(Direction.south);
@@ -110,7 +110,7 @@ namespace TVTIProject
 
             this.character.NodeDest = node1;
 
-            Sprite spriteMenu = new Sprite("sprite", Image.FromFile("..\\..\\menuLateral.PNG"));
+            Sprite spriteMenu = new Sprite("sprite", Image.FromFile("..\\..\\Resources\\SpritesX\\menuLateral.PNG"));
 
             this.menuLateral = new MenuLateral(spriteMenu);
         }
