@@ -21,9 +21,18 @@ namespace TVTIProject
             enabled = true;
         }
 
+        private const float fps = 30.0f;
+        private float ticks = 0;
+
         public void Draw(float deltaTime) {
-            if(enabled) 
-                level1.Draw(deltaTime);
+            ticks += deltaTime;
+            if (ticks >= 1.0f / fps) {
+                if (enabled)
+                {
+                    level1.Draw(deltaTime);
+                }
+                ticks = 0;
+            }
         }
 
         /// <summary>
