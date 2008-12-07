@@ -62,8 +62,8 @@ namespace TVTIProject
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void MainForm_Load(object sender, EventArgs e)
         {
-            try
-            {
+            /*try
+            {*/
                 // Initialize the library.
                 Gorgon.Initialize();
 
@@ -71,7 +71,6 @@ namespace TVTIProject
                 Gorgon.LogoVisible = false;
                 Gorgon.FrameStatsVisible = false;
 
-                // Set the video mode to match the form client area.
                 // Set the video mode to match the form client area.
                 Gorgon.SetMode(this, Constantes.resWidth, Constantes.resHeight, BackBufferFormats.BufferRGB888, true);
 
@@ -90,12 +89,12 @@ namespace TVTIProject
                 //Sound.PlaySound("city");
                 // Begin execution.
                 Gorgon.Go();
-            }
+            /*}
             catch (Exception ex)
             {
                 MessageBox.Show(this, "An unhandled error occured during execution, the program will now close.", ex.Message + "\n\n" + ex.StackTrace);
                 Application.Exit();
-            }
+            }*/
         }
         #endregion
 
