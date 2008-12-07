@@ -45,8 +45,8 @@ namespace TVTIProject
         public SceneNode(Vector2D position, Sprite sprite) {
             this.Position = position;
             this.Sprite = sprite;
-            this.Sprite.Width = 10;
-            this.Sprite.Height = 10;
+            //this.Sprite.Width = 10;
+            //this.Sprite.Height = 10;
             this.Sprite.Position = position;
 
             NeighborNodes = new Dictionary<Direction, SceneNode>();
