@@ -18,33 +18,67 @@ namespace TVTIProject
         private Character character;
         
         private Image background;
-        
+
+        /// <summary>
+        /// Offset para mover la pantalla y los elementos.
+        /// El personaje debería permanecer siempre entre el 1er cuarto de la pantalla (200) y la mitad (400).
+        /// </summary>
+        public int offsetX = 0;
+
         public Level1(string backgroundPath) {
-            //this.background = Image.FromFile("backgroundPath");
+            this.background = Image.FromFile("..\\..\\fondo1.PNG");
             nodes = new LinkedList<SceneNode>();
             Initialize();
+
+            _screen = new RenderImage("Screen", 800, 600, ImageBufferFormats.BufferRGB888A8, false, false);
+            blitter = new Sprite("Blitter", _screen);            
         }
 
+        private RenderImage _screen;
+        private Sprite blitter;
+
+
+        int blittingOffset = 0;
+        int blittingLimit = 200;
+        /// <summary>
+        /// Ajusta el blitter para que el personaje no se pase del 1º cuarto de la pantalla
+        /// </summary>
+        private void AjustarBlitter() {
+            if (character.Position.X - blittingOffset > blittingLimit) {
+                blittingOffset++;
+                blitter.Position = new Vector2D(-blittingOffset, 0);
+            }
+            blitter.Draw();
+        }
+        
+
         public void Draw(float deltaTime) {
-            //background.Blit();
+            _screen.Clear();
+            _screen.BeginDrawing();
 
+            background.Blit();
             character.Draw(deltaTime);
-
             foreach (SceneNode node in nodes) {
                 node.Draw(deltaTime);
             }
+            
+            _screen.EndDrawing();
+
+            AjustarBlitter();
         }
 
         /// <summary>
         /// Inicializo los elementos del nivel
         /// </summary>
         private void Initialize() {
-            Sprite spriteNode1 = new Sprite("..\\..\\Resources\\Sprites\\turningNodeSprite.gorSprite");
-            Sprite spriteNode2 = new Sprite("..\\..\\Resources\\Sprites\\turningNodeSprite.gorSprite");
-            Sprite spriteNode3 = new Sprite("..\\..\\Resources\\Sprites\\turningNodeSprite.gorSprite");
-            Sprite spriteNode4 = new Sprite("..\\..\\Resources\\Sprites\\turningNodeSprite.gorSprite");
+            Image.FromFile(@"..\..\Resources\Sprites\spritesv0.bmp");
 
-            Sprite spriteCharacter = new Sprite("..\\..\\Resources\\Sprites\\characterSprite.gorSprite");
+            Sprite spriteNode1 = Sprite.FromFile(@"..\..\Resources\Sprites\turningNode.gorSprite");
+            Sprite spriteNode2 = Sprite.FromFile(@"..\..\Resources\Sprites\turningNode.gorSprite");
+            Sprite spriteNode3 = Sprite.FromFile(@"..\..\Resources\Sprites\turningNode.gorSprite");
+            Sprite spriteNode4 = Sprite.FromFile(@"..\..\Resources\Sprites\turningNode.gorSprite");
+
+            Sprite spriteCharacter = Sprite.FromFile(@"..\..\Resources\Sprites\character.gorSprite");
 
             TurningNode node1 = new TurningNode(new Vector2D(300, 300), spriteNode1);
             node1.addPossibleTurningDirection(Direction.south);
@@ -70,6 +104,7 @@ namespace TVTIProject
             this.character.Position = new Vector2D(100, 300);
 
             this.character.NodeDest = node1;
+            
         }
 
     }
