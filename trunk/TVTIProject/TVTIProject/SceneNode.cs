@@ -6,6 +6,8 @@ using System.Text;
 using GorgonLibrary.Graphics;
 using GorgonLibrary;
 
+using System.Drawing;
+
 namespace TVTIProject
 {
     /// <summary>
@@ -45,8 +47,6 @@ namespace TVTIProject
         public SceneNode(Vector2D position, Sprite sprite) {
             this.Position = position;
             this.Sprite = sprite;
-            //this.Sprite.Width = 10;
-            //this.Sprite.Height = 10;
             this.Sprite.Position = position;
 
             NeighborNodes = new Dictionary<Direction, SceneNode>();
@@ -77,6 +77,11 @@ namespace TVTIProject
         /// </summary>
         /// <param name="dtime"></param>
         public abstract void Draw(float dtime);
+
+        public bool Contains(int X, int Y) {
+            Rectangle r = new Rectangle((int)Position.X, (int)Position.Y, (int)Sprite.Width, (int)Sprite.Height);
+            return r.Contains(X, Y);
+        }
     }
 
 }
