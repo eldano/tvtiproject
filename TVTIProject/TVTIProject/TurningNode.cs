@@ -61,7 +61,6 @@ namespace TVTIProject
 
         public override void Draw(float dtime)
         {
-            /*
             switch (turnedTo) { 
                 case Direction.north:
                     this.Sprite.Animations["north"].Advance(dtime);
@@ -76,7 +75,6 @@ namespace TVTIProject
                     this.Sprite.Animations["west"].Advance(dtime);
                     break;
             }
-             */
 
             Sprite.Draw();
         }
