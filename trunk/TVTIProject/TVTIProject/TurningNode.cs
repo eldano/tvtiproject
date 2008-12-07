@@ -51,7 +51,7 @@ namespace TVTIProject
         public override void MouseClick(InventoryItem item)
         {
             turn();
-            System.Windows.Forms.MessageBox.Show("Click on node");
+            Sound.PlaySound("aceite");
         }
 
         public override void CharacterVisit(Character character)
