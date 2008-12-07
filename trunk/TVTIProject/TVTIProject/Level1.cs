@@ -19,25 +19,29 @@ namespace TVTIProject
         
         private Image background;
 
-        /// <summary>
-        /// Offset para mover la pantalla y los elementos.
-        /// El personaje debería permanecer siempre entre el 1er cuarto de la pantalla (200) y la mitad (400).
-        /// </summary>
-        public int offsetX = 0;
+        private MenuLateral menuLateral;
+
+        private InventoryItem activeCursor;
 
         public Level1(string backgroundPath) {
             this.background = Image.FromFile("..\\..\\fondo1.PNG");
+
             nodes = new LinkedList<SceneNode>();
             Initialize();
 
             _screen = new RenderImage("Screen", 800, 600, ImageBufferFormats.BufferRGB888A8, false, false);
-            blitter = new Sprite("Blitter", _screen);            
+            blitter = new Sprite("Blitter", _screen);
+
+            activeCursor = new InventoryItem(2, ItemTypes.tapa);
         }
 
         private RenderImage _screen;
         private Sprite blitter;
 
-
+        /// <summary>
+        /// Offset para mover la pantalla y los elementos.
+        /// El personaje debería permanecer siempre entre el 1er cuarto de la pantalla (200) y la mitad (400).
+        /// </summary>
         int blittingOffset = 0;
         int blittingLimit = 200;
         /// <summary>
@@ -50,7 +54,6 @@ namespace TVTIProject
             }
             blitter.Draw();
         }
-        
 
         public void Draw(float deltaTime) {
             _screen.Clear();
@@ -65,6 +68,8 @@ namespace TVTIProject
             _screen.EndDrawing();
 
             AjustarBlitter();
+
+            menuLateral.Draw(deltaTime);
         }
 
         /// <summary>
@@ -104,8 +109,30 @@ namespace TVTIProject
             this.character.Position = new Vector2D(100, 300);
 
             this.character.NodeDest = node1;
-            
+
+            Sprite spriteMenu = new Sprite("sprite", Image.FromFile("..\\..\\menuLateral.PNG"));
+
+            this.menuLateral = new MenuLateral(spriteMenu);
         }
 
+        /// <summary>
+        /// Resuelve lo que hacer cuando se hace click en la posicion pos
+        /// </summary>
+        /// <param name="pos"></param>
+        public void click(Vector2D pos) {
+            int X = (int)pos.X;                     //Para coordenadas absolutos, ej: Menu Lateral
+            int XmasOffset = X + blittingOffset;    //Para coordenadas relativas, ej: Nodos
+            int Y = (int)pos.Y;
+
+            foreach (SceneNode sn in nodes) { 
+                if(sn.Contains(XmasOffset, Y)) {
+                    sn.MouseClick(activeCursor);
+                    return;
+                }
+            }
+            if (menuLateral.Contains(X, Y)) {
+                menuLateral.Click(X, Y, activeCursor);
+            }
+        }
     }
 }
