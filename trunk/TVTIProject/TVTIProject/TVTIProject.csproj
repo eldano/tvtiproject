@@ -101,8 +101,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Resources\Sprites\character.gorSprite" />
-    <None Include="Resources\Sprites\turningNode.gorSprite" />
+    <None Include="Resources\SpritesX\character.gorSprite" />
+    <None Include="Resources\SpritesX\turningNode.gorSprite" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -142,8 +142,9 @@
     <EmbeddedResource Include="Resources\Sonidos\Poder.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <Content Include="Resources\Sprites\fondo1.PNG" />
-    <Content Include="Resources\Sprites\spritesv0.bmp" />
+    <Content Include="Resources\SpritesX\fondo1.PNG" />
+    <Content Include="Resources\SpritesX\menuLateral.PNG" />
+    <Content Include="Resources\SpritesX\spritesv0.bmp" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
