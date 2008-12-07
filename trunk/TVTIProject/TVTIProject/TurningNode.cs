@@ -51,7 +51,7 @@ namespace TVTIProject
         public override void MouseClick(InventoryItem item)
         {
             turn();
-            throw new NotImplementedException();
+            System.Windows.Forms.MessageBox.Show("Click on node");
         }
 
         public override void CharacterVisit(Character character)
