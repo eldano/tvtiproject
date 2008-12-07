@@ -84,8 +84,10 @@ namespace TVTIProject
                 //inicializaciones
                 game = new Game();
 
+                Sound.init();
+                Song.PlaySong("ciudad");
 
-                Song.PlaySong("city");
+                //Sound.PlaySound("city");
                 // Begin execution.
                 Gorgon.Go();
             }
@@ -109,6 +111,7 @@ namespace TVTIProject
             if (e is MouseEventArgs)
             {
                 MouseEventArgs clickArgs = (MouseEventArgs)e;
+                Sound.PlaySound("alcantarilla");
             }
         }
     }

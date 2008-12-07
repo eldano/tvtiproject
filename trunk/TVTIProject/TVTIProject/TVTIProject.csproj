@@ -34,7 +34,6 @@
   <ItemGroup>
     <Reference Include="Gorgon, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c001d94e9acbbee7, processorArchitecture=x86" />
     <Reference Include="Microsoft.DirectX.AudioVideoPlayback, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="SlimDX, Version=2.0.5.39, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=x86" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -95,7 +94,7 @@
     </Compile>
     <Compile Include="Level1.cs" />
     <Compile Include="Song.cs" />
-    <Compile Include="SoundModule.cs" />
+    <Compile Include="Sound.cs" />
     <Compile Include="TurningNode.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +104,15 @@
     <Content Include="Resources\Icons\ExeIcono.ico" />
     <Content Include="Resources\Libraries\Gorgon.dll" />
     <Content Include="Resources\Libraries\SlimDX.dll" />
+    <EmbeddedResource Include="Resources\Sonidos\Alcantarilla.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Musica\ciudad.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Musica\menu.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="Resources\spritesv0.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
