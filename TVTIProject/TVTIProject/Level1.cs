@@ -24,7 +24,7 @@ namespace TVTIProject
         private InventoryItem activeCursor;
 
         public Level1(string backgroundPath) {
-            this.background = Image.FromFile("..\\..\\fondo1.PNG");
+            this.background = Image.FromFile(@"..\..\Sprites\fondo1.PNG");
 
             nodes = new LinkedList<SceneNode>();
             Initialize();
